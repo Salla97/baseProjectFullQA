@@ -1,0 +1,4 @@
+{
+  "using": "css selector",
+  "value": "div#rso div:nth-child(1) > div > div.r > a > h3"
+}
