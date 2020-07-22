@@ -17,4 +17,3 @@ Feature: Adicionar produto no carrinho de compras da loja Ponto Frio
         And eu preencho os dados de endereço
         And eu preencho os dados de pagamento
         Then eu recebo a confirmação da compra do produto desejado
-
