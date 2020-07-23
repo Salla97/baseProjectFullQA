@@ -7,81 +7,38 @@ const assert = require('chai').assert;
 
 class MeuCarrinhoPage {
     // define os elementos
-    get nomeProdutoLbl() { return $('section#sectionContent a > strong'); }
-    get qntProdutoLbl() { return $('input[data-id="qtdeSku"'); }
-    get tipoPrazoFreteLbl() { return $('span[data-id="disponibilidade"]'); }
-    get valorFreteLbl() { return $('span[data-id="valor"]'); }
-    get valorProdutoUnitLbl() { return $('section#sectionContent ins.precoPorValorUnitario'); }
-    get valorTotalProdutoLbl() { return $('td[data-id="precoTotal"]'); }
-    get valorSubTotalProdutoLbl() { return $('td[data-id="subTotalProdutos"]'); }
-    get freteConsultadoLbl() { return $('input#Cep'); }
-    get subTotalFreteLbl() { return $('td[data-id="valorFrete"]'); }
-    get cupomDescontoLbl() { return $('section#sectionContent td.couponValue'); }
-    get valorTotalCarrinhoLbl() { return $('em[data-id="valorTotal"]'); }
-    get concluirCompraDownBtn() { return $('a[data-id="btnComprar"][class*="btConcluir"]'); }
-
+    get nomeProdutoLink() { return $('form#activeCartViewForm span.a-size-medium.sc-product-title.a-text-bold'); }
+    get qtdeProdutoLbl() { return $('span#a-autoid-0-announce > span:nth-child(2)'); }
+    get valorProdutoUnLbl() { return $('form#activeCartViewForm p > span'); }
+    get subTotalProdutoLbl() { return $('span#sc-subtotal-amount-activecart > span'); }
+    get subTotalCarrinhoLbl() { return $('span#sc-subtotal-amount-buybox > span'); }
+    get fecharPedidoBtn() { return $('input[name="proceedToRetailCheckout"]'); }
 
     //Metodos dos elementos de ação
     nomeProdutoValue() {
-        this.nomeProdutoLbl.waitForDisplayed();
-        return this.nomeProdutoLbl.getText();
+        this.nomeProdutoLink.waitForDisplayed();
+        return this.nomeProdutoLink.getText();
     }
-
-    qnteProdutoValue() {
-        this.qntProdutoLbl.waitForDisplayed();
-        return this.qntProdutoLbl.getValue();
+    qtdeProdutoValue() {
+        this.qtdeProdutoLbl.waitForDisplayed();
+        return this.qtdeProdutoLbl.getValue();
     }
-
-    tipoPrazoFreteValue() {
-        this.tipoPrazoFreteLbl.waitForDisplayed();
-        return this.tipoPrazoFreteLbl.getText();
-    }
-
-    valorFreteValue() {
-        this.valorFreteLbl.waitForDisplayed();
-        return this.valorFreteLbl.getText();
-    }
-
     valorProdutoUnValue() {
-        this.valorProdutoUnitLbl.waitForDisplayed();
-        return this.valorProdutoUnitLbl.getText();
+        this.valorProdutoUnLbl.waitForDisplayed();
+        return this.valorProdutoUnLbl.getText();
     }
-
-    valorTotalProdutoValue() {
-        this.valorTotalProdutoLbl.waitForDisplayed();
-        return this.valorTotalProdutoLbl.getText();
-    }
-
     subTotalProdutoValue() {
-        this.valorSubTotalProdutoLbl.waitForDisplayed();
-        return this.valorSubTotalProdutoLbl.getText();
+        this.subTotalProdutoLbl.waitForDisplayed();
+        return this.subTotalProdutoLbl.getText();
     }
-
-    freteConsultadoValue() {
-        this.freteConsultadoLbl.waitForDisplayed();
-        return this.freteConsultadoLbl.getValue();
+    subTotalCarrinhoValue() {
+        this.subTotalCarrinhoLbl.waitForDisplayed();
+        return this.subTotalCarrinhoLbl.getText();
     }
-
-    subTotalFreteValue() {
-        this.subTotalFreteLbl.waitForDisplayed();
-        return this.subTotalFreteLbl.getText();
+    fecharPedidoClick() {
+        this.fecharPedidoBtn.waitForDisplayed();
+        this.fecharPedidoBtn.click();
     }
-
-    cupomDescontoValue() {
-        this.cupomDescontoLbl.waitForDisplayed();
-        return this.cupomDescontoLbl.getText();
-    }
-
-    valorTotalCarrinhoValue() {
-        this.valorTotalCarrinhoLbl.waitForDisplayed();
-        return this.valorTotalCarrinhoLbl.getText();
-    }
-
-    concluirCompraClick() {
-        this.concluirCompraDownBtn.waitForDisplayed();
-        this.concluirCompraDownBtn.click(); 
-    }
-
 }
 
 module.exports = MeuCarrinhoPage;

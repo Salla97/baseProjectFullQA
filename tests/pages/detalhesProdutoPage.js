@@ -7,21 +7,16 @@ const assert = require('chai').assert;
 
 class DetalhesProdutoPage {
     // define os elementos
-    get productNameLbl() { return $('div#ctl00_Conteudo_PanelMaster h1 > b'); }
-    get priceLbl() { return $('strong#ctl00_Conteudo_ctl00_precoPorValue > i'); }
-    get qntParcelaLbl() { return $('span#ctl00_Conteudo_ctl00_spanParcel > strong:nth-child(1)'); }
-    get valorLbl() { return $('span#ctl00_Conteudo_ctl00_spanParcel > strong:nth-child(2)'); }
-    get comprarBtn() { return $('a#btnAdicionarCarrinho'); }
-    get cepTxt() { return $('input#ctl00_Conteudo_ctl26_txtCep'); }
-    get okCepBtn() { return $('input#btnCalculoFrete'); }
-    get qntDiasCepNormalLbl() { return $('td#ctl00_Conteudo_ctl26_rptTipoEntregaFrete_ctl02_lblDeliveryTime'); }
-    get valorCepNormalLbl() { return $('td#ctl00_Conteudo_ctl26_rptTipoEntregaFrete_ctl02_lblValue'); }
-    get duasVezesSJurosLbl() { return $('tr#ctl00_Conteudo_ctl02_rptParcelamentoCartao1_ctl02_tr > th'); }
-    get valorDuasVezesSJurosLbl() { return $('tr#ctl00_Conteudo_ctl02_rptParcelamentoCartao1_ctl02_tr > td:nth-child(2)'); }
-    get quatroVezesCJurosLbl() { return $('tr#ctl00_Conteudo_ctl02_rptParcelamentoCartao1_ctl04_tr > th'); }
+    get productNameLbl() { return $('span#productTitle'); }
+    get priceLbl() { return $('span#priceblock_saleprice'); }
+    get qtdeValorParcelaLbl() { return $('div#installmentCalculator_feature_div > span.a-text-bold'); }
+    get comprarAgoraBtn() { return $('input#buy-now-button'); }
+    get addCarrinhoBtn() { return $('input#add-to-cart-button'); }
+    get calculadoraPrestacaoLink() { return $('span#InstallmentCalculatorTrigger > a'); }
+    get duasVezesSJurosLbl() { return $('table#InstallmentCalculatorTable tr:nth-child(2) > td.a-text-left.a-nowrap'); }
+    get valorDuasVezesSJurosLbl() { return $('table#InstallmentCalculatorTable tr:nth-child(2) > td:nth-child(2)'); }
 
     //Metodos dos elementos de ação
-
     visualizarProductName(texto) {
         this.productNameLbl.waitForDisplayed();
         expect(this.productNameLbl.getText()).to.equal(texto);
@@ -32,52 +27,34 @@ class DetalhesProdutoPage {
         return this.priceLbl.getText();
     }
 
-    qntdParcelaValue() {
-        this.qntParcelaLbl.waitForDisplayed();
-        return this.qntParcelaLbl.getText();
-    }
-
-    valorParcelaValue() {
-        this.valorLbl.waitForDisplayed();
-        return this.valorLbl.getText();
-    }
-
-    calcularCep(cep) {
-        this.cepTxt.waitForDisplayed();
-        this.cepTxt.setValue(cep);
-        browser.keys('Enter');
-    }
-
-    qntDiasCepNormalValue() {
-        this.qntDiasCepNormalLbl.waitForDisplayed();
-        return this.qntDiasCepNormalLbl.getText();
-    }
-
-    valorCepNormalValue() {
-        this.valorCepNormalLbl.waitForDisplayed();
-        return this.valorCepNormalLbl.getText();
+    qtdeValorParcelaValue() {
+        this.qtdeValorParcelaLbl.waitForDisplayed();
+        return this.qtdeValorParcelaLbl.getText();
     }
 
     duasVezesSJurosValue() {
+        this.calculadoraPrestacaoLink.waitForDisplayed();
+        this.calculadoraPrestacaoLink.click();
         this.duasVezesSJurosLbl.waitForDisplayed();
         return this.duasVezesSJurosLbl.getText();
     }
 
     valorDuasVezesSJurosValue() {
+        this.calculadoraPrestacaoLink.waitForDisplayed();
+        this.calculadoraPrestacaoLink.click();
         this.valorDuasVezesSJurosLbl.waitForDisplayed();
         return this.valorDuasVezesSJurosLbl.getText();
     }
 
-    quatroVezesCJurosValue() {
-        this.quatroVezesCJurosLbl.waitForDisplayed();
-        return this.quatroVezesCJurosLbl.getText();
+    comprarAgoraClick() {
+        this.comprarAgoraBtn.waitForDisplayed();
+        this.comprarAgoraBtn.click();
     }
 
-    comprarClick() {
-        this.comprarBtn.waitForDisplayed();
-        this.comprarBtn.click();
+    addCarrinhoClick() {
+        this.addCarrinhoBtn.waitForDisplayed();
+        this.addCarrinhoBtn.click();
     }
-
 }
 
 module.exports = DetalhesProdutoPage;

@@ -7,9 +7,9 @@ const assert = require('chai').assert;
 
 class PaginaPrincipalPage {
     // define os elementos
-    get previousBtn() { return $('div > div[class*="bnrAuto"] > button[aria-label="Previous"]'); }
-    get searchTxt() { return $('input#strBusca"]'); }
-    get okBnt() { return $('button#btnOK"]'); }
+    get previousBtn() { return $('i[class*="previous"]'); }
+    get searchTxt() { return $('input#twotabsearchtextbox'); }
+    get okBtn() { return $('input[value="Ir"]'); }
 
     //Metodos dos elementos de ação
     isPreviousVisible() {
@@ -23,7 +23,7 @@ class PaginaPrincipalPage {
         browser.keys('Enter');
     }
 
-    open() {
+    open(){
         browser.url('/');
     }
 }
